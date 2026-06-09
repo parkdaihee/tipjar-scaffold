@@ -1,0 +1,143 @@
+{
+  "address": "0x0a6EC1fBa0D404fbad8901103e690c100875208A",
+  "abi": [
+    {
+      "inputs": [],
+      "stateMutability": "nonpayable",
+      "type": "constructor"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": true,
+          "internalType": "address",
+          "name": "tipper",
+          "type": "address"
+        },
+        {
+          "indexed": false,
+          "internalType": "uint256",
+          "name": "amount",
+          "type": "uint256"
+        }
+      ],
+      "name": "TipReceived",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": true,
+          "internalType": "address",
+          "name": "owner",
+          "type": "address"
+        },
+        {
+          "indexed": false,
+          "internalType": "uint256",
+          "name": "amount",
+          "type": "uint256"
+        }
+      ],
+      "name": "TipWithdrawn",
+      "type": "event"
+    },
+    {
+      "inputs": [],
+      "name": "getBalance",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "owner",
+      "outputs": [
+        {
+          "internalType": "address",
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "tip",
+      "outputs": [],
+      "stateMutability": "payable",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "withdrawTips",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "stateMutability": "payable",
+      "type": "receive"
+    }
+  ],
+  "transactionHash": "0xf0eb61f53481ed12dce928370d5fd84ecd64528006b7889f200bcd40346df5b1",
+  "receipt": {
+    "to": null,
+    "from": "0x5F5724E3E2533e4c20CFbC23B2EFbC6A010bF01d",
+    "contractAddress": "0x0a6EC1fBa0D404fbad8901103e690c100875208A",
+    "transactionIndex": 92,
+    "gasUsed": "262797",
+    "logsBloom": "0x00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+    "blockHash": "0x2a0887803228c90954e72838a393fab2ce7074348bc36054657fd5b0b5956792",
+    "transactionHash": "0xf0eb61f53481ed12dce928370d5fd84ecd64528006b7889f200bcd40346df5b1",
+    "logs": [],
+    "blockNumber": 10628480,
+    "cumulativeGasUsed": "17287146",
+    "status": 1,
+    "byzantium": true
+  },
+  "args": [],
+  "numDeployments": 1,
+  "solcInputHash": "7fb50f43a6b674f81a38f578cf037c71",
+  "metadata": "{\"compiler\":{\"version\":\"0.8.30+commit.73712a01\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"inputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"constructor\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"address\",\"name\":\"tipper\",\"type\":\"address\"},{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"amount\",\"type\":\"uint256\"}],\"name\":\"TipReceived\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"address\",\"name\":\"owner\",\"type\":\"address\"},{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"amount\",\"type\":\"uint256\"}],\"name\":\"TipWithdrawn\",\"type\":\"event\"},{\"inputs\":[],\"name\":\"getBalance\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"owner\",\"outputs\":[{\"internalType\":\"address\",\"name\":\"\",\"type\":\"address\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"tip\",\"outputs\":[],\"stateMutability\":\"payable\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"withdrawTips\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"stateMutability\":\"payable\",\"type\":\"receive\"}],\"devdoc\":{\"kind\":\"dev\",\"methods\":{},\"version\":1},\"userdoc\":{\"kind\":\"user\",\"methods\":{},\"version\":1}},\"settings\":{\"compilationTarget\":{\"contracts/TipJar.sol\":\"TipJar\"},\"evmVersion\":\"paris\",\"libraries\":{},\"metadata\":{\"bytecodeHash\":\"ipfs\",\"useLiteralContent\":true},\"optimizer\":{\"enabled\":true,\"runs\":200},\"remappings\":[]},\"sources\":{\"contracts/TipJar.sol\":{\"content\":\"// SPDX-License-Identifier: UNLICENSED\\r\\npragma solidity ^0.8.13;\\r\\n\\r\\ncontract TipJar {\\r\\n    address public owner;\\r\\n\\r\\n    event TipReceived(address indexed tipper, uint256 amount);\\r\\n    event TipWithdrawn(address indexed owner, uint256 amount);\\r\\n\\r\\n    constructor() {\\r\\n        owner = msg.sender;\\r\\n    }\\r\\n\\r\\n    modifier onlyOwner() {\\r\\n        require(msg.sender == owner, \\\"Only the owner can call this function.\\\");\\r\\n        _;\\r\\n    }\\r\\n\\r\\n    receive() external payable {\\r\\n        emit TipReceived(msg.sender, msg.value);\\r\\n    }\\r\\n\\r\\n    function tip() public payable {\\r\\n        require(msg.value > 0, \\\"You must send a tip to use this function.\\\");\\r\\n        emit TipReceived(msg.sender, msg.value);\\r\\n    }\\r\\n\\r\\n    function withdrawTips() public onlyOwner {\\r\\n        uint256 contractBalance = address(this).balance;\\r\\n        require(contractBalance > 0, \\\"There are no tips to withdraw.\\\");\\r\\n\\r\\n        emit TipWithdrawn(owner, contractBalance);\\r\\n\\r\\n        (bool success, ) = payable(owner).call{ value: contractBalance }(\\\"\\\");\\r\\n        require(success, \\\"Transfer failed.\\\");\\r\\n    }\\r\\n\\r\\n    function getBalance() public view returns (uint256) {\\r\\n        return address(this).balance;\\r\\n    }\\r\\n}\\r\\n\",\"keccak256\":\"0xcb857fba07f46bfd7b877f4a160bb35c05d4d6472dc5cdb7c36142799a86707f\",\"license\":\"UNLICENSED\"}},\"version\":1}",
+  "bytecode": "0x6080604052348015600f57600080fd5b50600080546001600160a01b03191633179055610362806100316000396000f3fe6080604052600436106100435760003560e01c806312065fe0146100845780632755cd2d146100a45780633aaa74b2146100ae5780638da5cb5b146100c357600080fd5b3661007f5760405134815233907fd870bae925cfee4bcba43c4af9dd73d2355dfaf3bb76145be3857b4ec634ab9f9060200160405180910390a2005b600080fd5b34801561009057600080fd5b506040514781526020015b60405180910390f35b6100ac6100fb565b005b3480156100ba57600080fd5b506100ac610199565b3480156100cf57600080fd5b506000546100e3906001600160a01b031681565b6040516001600160a01b03909116815260200161009b565b600034116101625760405162461bcd60e51b815260206004820152602960248201527f596f75206d7573742073656e6420612074697020746f20757365207468697320604482015268333ab731ba34b7b71760b91b60648201526084015b60405180910390fd5b60405134815233907fd870bae925cfee4bcba43c4af9dd73d2355dfaf3bb76145be3857b4ec634ab9f9060200160405180910390a2565b6000546001600160a01b031633146102025760405162461bcd60e51b815260206004820152602660248201527f4f6e6c7920746865206f776e65722063616e2063616c6c20746869732066756e60448201526531ba34b7b71760d11b6064820152608401610159565b47806102505760405162461bcd60e51b815260206004820152601e60248201527f546865726520617265206e6f207469707320746f2077697468647261772e00006044820152606401610159565b6000546040518281526001600160a01b03909116907fb90a88a5e6d88aa2baf23e87edd29a157df95572bb85a56cdaeaf0b00b548d1c9060200160405180910390a2600080546040516001600160a01b039091169083908381818185875af1925050503d80600081146102df576040519150601f19603f3d011682016040523d82523d6000602084013e6102e4565b606091505b50509050806103285760405162461bcd60e51b815260206004820152601060248201526f2a3930b739b332b9103330b4b632b21760811b6044820152606401610159565b505056fea2646970667358221220ee2bb083ee63d06970383016f14b4f6e7c355dfdd2e230cf0c746ae064f0c0ec64736f6c634300081e0033",
+  "deployedBytecode": "0x6080604052600436106100435760003560e01c806312065fe0146100845780632755cd2d146100a45780633aaa74b2146100ae5780638da5cb5b146100c357600080fd5b3661007f5760405134815233907fd870bae925cfee4bcba43c4af9dd73d2355dfaf3bb76145be3857b4ec634ab9f9060200160405180910390a2005b600080fd5b34801561009057600080fd5b506040514781526020015b60405180910390f35b6100ac6100fb565b005b3480156100ba57600080fd5b506100ac610199565b3480156100cf57600080fd5b506000546100e3906001600160a01b031681565b6040516001600160a01b03909116815260200161009b565b600034116101625760405162461bcd60e51b815260206004820152602960248201527f596f75206d7573742073656e6420612074697020746f20757365207468697320604482015268333ab731ba34b7b71760b91b60648201526084015b60405180910390fd5b60405134815233907fd870bae925cfee4bcba43c4af9dd73d2355dfaf3bb76145be3857b4ec634ab9f9060200160405180910390a2565b6000546001600160a01b031633146102025760405162461bcd60e51b815260206004820152602660248201527f4f6e6c7920746865206f776e65722063616e2063616c6c20746869732066756e60448201526531ba34b7b71760d11b6064820152608401610159565b47806102505760405162461bcd60e51b815260206004820152601e60248201527f546865726520617265206e6f207469707320746f2077697468647261772e00006044820152606401610159565b6000546040518281526001600160a01b03909116907fb90a88a5e6d88aa2baf23e87edd29a157df95572bb85a56cdaeaf0b00b548d1c9060200160405180910390a2600080546040516001600160a01b039091169083908381818185875af1925050503d80600081146102df576040519150601f19603f3d011682016040523d82523d6000602084013e6102e4565b606091505b50509050806103285760405162461bcd60e51b815260206004820152601060248201526f2a3930b739b332b9103330b4b632b21760811b6044820152606401610159565b505056fea2646970667358221220ee2bb083ee63d06970383016f14b4f6e7c355dfdd2e230cf0c746ae064f0c0ec64736f6c634300081e0033",
+  "devdoc": {
+    "kind": "dev",
+    "methods": {},
+    "version": 1
+  },
+  "userdoc": {
+    "kind": "user",
+    "methods": {},
+    "version": 1
+  },
+  "storageLayout": {
+    "storage": [
+      {
+        "astId": 3,
+        "contract": "contracts/TipJar.sol:TipJar",
+        "label": "owner",
+        "offset": 0,
+        "slot": "0",
+        "type": "t_address"
+      }
+    ],
+    "types": {
+      "t_address": {
+        "encoding": "inplace",
+        "label": "address",
+        "numberOfBytes": "20"
+      }
+    }
+  }
+}
